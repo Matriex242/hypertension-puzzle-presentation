@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Growing Crisis: Incidence and Burden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+        }
+
+        /* Geometric Accents */
+        .geo-accent {
+            position: absolute;
+            z-index: 0;
+        }
+        .accent-top-right {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: #f4f6f7;
+            border-radius: 50%;
+        }
+        .accent-bottom-left {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: #E74C3C;
+            opacity: 0.05;
+            transform: rotate(45deg);
+        }
+
+        /* Header */
+        .header-section {
+            margin-bottom: 50px;
+            z-index: 10;
+            border-left: 8px solid #E74C3C;
+            padding-left: 30px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Main Data Grid */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+            z-index: 10;
+        }
+
+        .data-card {
+            background: white;
+            border: 1px solid #ecf0f1;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #3498DB;
+        }
+
+        .data-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #3498DB;
+        }
+
+        .data-card.alert::after {
+            background: #E74C3C;
+        }
+
+        .big-number {
+            font-size: 56px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .data-card.alert .big-number {
+            color: #E74C3C;
+        }
+
+        .data-label {
+            font-size: 18px;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .data-desc {
+            font-size: 14px;
+            color: #95a5a6;
+            line-height: 1.5;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .comparison-text {
+            flex: 1;
+        }
+
+        .comparison-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .comparison-desc {
+            font-size: 16px;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .chart-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #34495E;
+            text-align: right;
+        }
+
+        .bar-track {
+            flex-grow: 1;
+            height: 24px;
+            background-color: #ecf0f1;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: #3498DB;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .bar-fill.warning {
+            background-color: #E74C3C;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Geometric Accents -->
+        <div class="geo-accent accent-top-right"></div>
+        <div class="geo-accent accent-bottom-left"></div>
+
+        <div class="header-section">
+            <h1 class="slide-title">A Growing Crisis</h1>
+            <h2 class="slide-subtitle">The escalating global burden of hypertension</h2>
+        </div>
+
+        <div class="data-grid">
+            <div class="data-card">
+                <span class="data-label">Global Reach</span>
+                <span class="big-number">1.28B</span>
+                <p class="data-desc">Adults aged 30-79 years worldwide have hypertension.</p>
+            </div>
+
+            <div class="data-card alert">
+                <span class="data-label">The Silent Gap</span>
+                <span class="big-number">46%</span>
+                <p class="data-desc">Of adults with hypertension are unaware they have the condition.</p>
+            </div>
+
+            <div class="data-card">
+                <span class="data-label">Economic Cost</span>
+                <span class="big-number">$131B</span>
+                <p class="data-desc">Annual cost in the United States alone (averaging $2,000 per patient).</p>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-text">
+                <h3 class="comparison-title">The Shift to Developing Nations</h3>
+                <p class="comparison-desc">
+                    While prevalence has stabilized in high-income countries, it is rising rapidly in low- and middle-income regions due to aging populations and lifestyle changes.
+                </p>
+            </div>
+            
+            <div class="chart-container">
+                <div class="bar-group">
+                    <span class="bar-label">High Income</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 28%;">28%</div>
+                    </div>
+                </div>
+                <div class="bar-group">
+                    <span class="bar-label">Low/Middle Income</span>
+                    <div class="bar-track">
+                        <div class="bar-fill warning" style="width: 32%;">32%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

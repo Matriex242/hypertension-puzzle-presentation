@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Piece #5: The Symptom Clues</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+        }
+
+        /* Background Elements */
+        .bg-shape {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: #fcf3f2; /* Light red tint */
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 0 80px;
+            margin-bottom: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .clue-badge {
+            background-color: #E74C3C; /* Red for danger/symptoms */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 80px;
+            z-index: 10;
+            height: 450px;
+        }
+
+        /* Left Column: The Silent Reality */
+        .silent-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .silent-card {
+            background-color: #2C3E50;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(44, 62, 80, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .silent-card:hover {
+            transform: scale(1.02);
+        }
+
+        .silent-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #3498DB;
+        }
+
+        .silent-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .silent-desc {
+            font-size: 18px;
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+            opacity: 0.9;
+        }
+
+        .stat-reveal {
+            margin-top: 20px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Right Column: The Warning Signs & Image */
+        .warning-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .warning-box {
+            background-color: white;
+            border: 2px solid #E74C3C;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .warning-header {
+            color: #E74C3C;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .symptom-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .symptom-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #34495E;
+            padding: 8px;
+            background-color: #fdf2f1;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .symptom-item:hover {
+            background-color: #fadbd8;
+        }
+
+        .symptom-item i {
+            color: #E74C3C;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Image Container */
+        .image-wrapper {
+            flex-grow: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure full image visibility */
+            background-color: #f8f9fa;
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 100%; /* 5/5 clues */
+            height: 100%;
+            background-color: #E74C3C; /* Red for final clue */
+        }
+
+        .clue-counter {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="bg-shape"></div>
+
+        <div class="header-section">
+            <span class="clue-badge">Clue #5 Found</span>
+            <h1 class="slide-title">The Symptom Clues</h1>
+            <h2 class="slide-subtitle">Why do we call it the "Silent Killer"?</h2>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left: The Silence -->
+            <div class="silent-column">
+                <div class="silent-card">
+                    <i class="fas fa-volume-mute silent-icon"></i>
+                    <h3 class="silent-title">No Symptoms</h3>
+                    <p class="silent-desc">
+                        In the vast majority of cases, there are <strong>zero</strong> warning signs until significant damage has occurred.
+                    </p>
+                    <div class="stat-reveal">
+                        <i class="fas fa-info-circle"></i> 46% of adults are unaware they have it.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: The Warning & Image -->
+            <div class="warning-column">
+                <div class="warning-box">
+                    <div class="warning-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Rare Warning Signs (Severe Cases)</span>
+                    </div>
+                    <div class="symptom-list">
+                        <div class="symptom-item"><i class="fas fa-head-side-virus"></i> Severe Headache</div>
+                        <div class="symptom-item"><i class="fas fa-tint"></i> Nosebleeds</div>
+                        <div class="symptom-item"><i class="fas fa-lungs"></i> Shortness of Breath</div>
+                        <div class="symptom-item"><i class="fas fa-eye"></i> Vision Changes</div>
+                    </div>
+                </div>
+
+                <div class="image-wrapper">
+                    <img src="/home/ubuntu/upload/search_images/iVoiwue98o92.jpg" alt="Person checking blood pressure">
+                    <div class="image-caption">Regular monitoring is the ONLY way to know.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <span class="clue-counter">CLUE 5 OF 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

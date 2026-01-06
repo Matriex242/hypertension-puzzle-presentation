@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Piece #4: Medical Causes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+        }
+
+        /* Background Elements */
+        .bg-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 2px dashed #ecf0f1;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 0 80px;
+            margin-bottom: 20px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .clue-badge {
+            background-color: #2C3E50; /* Dark Blue for piece #4 */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Central Hub */
+        .central-hub {
+            width: 280px;
+            height: 280px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            z-index: 20;
+            border: 10px solid #f4f6f7;
+            transition: all 0.3s ease;
+        }
+
+        .hub-icon {
+            font-size: 60px;
+            color: #E74C3C;
+            margin-bottom: 15px;
+        }
+
+        .hub-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .hub-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Radial Nodes */
+        .node {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #3498DB;
+            z-index: 15;
+        }
+
+        .node:hover {
+            transform: scale(1.2);
+            background-color: #3498DB;
+            border-color: #2980B9;
+            z-index: 25;
+        }
+
+        .node i {
+            font-size: 36px;
+            color: #3498DB;
+            transition: color 0.3s ease;
+        }
+
+        .node:hover i {
+            color: white;
+        }
+
+        /* Positioning Nodes - Improved Spacing (Circle Radius ~280px) */
+        .node-1 { top: 3%; left: 50%; transform: translateX(-50%); } /* Top center */
+        .node-2 { top: 25%; right: 5%; } /* Right top - moved further right */
+        .node-3 { bottom: 25%; right: 5%; } /* Right bottom - moved further right */
+        .node-4 { bottom: 25%; left: 5%; } /* Left bottom - moved further left */
+        .node-5 { top: 25%; left: 5%; } /* Left top - moved further left */
+
+        /* Info Cards (Hidden by default, shown on hover) */
+        .info-card {
+            position: absolute;
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 30;
+            border-left: 5px solid #E74C3C;
+        }
+
+        .info-card h3 { color: #2C3E50; margin-bottom: 8px; font-size: 18px; }
+        .info-card p { color: #555; font-size: 14px; line-height: 1.5; font-family: 'Open Sans', sans-serif; }
+        .info-card .stat { display: block; margin-top: 10px; font-weight: 700; color: #E74C3C; }
+
+        /* Hover Logic */
+        .node-1:hover + .info-1 { opacity: 1; transform: translateY(-10px); }
+        .node-2:hover + .info-2 { opacity: 1; transform: translateY(-10px); }
+        .node-3:hover + .info-3 { opacity: 1; transform: translateY(-10px); }
+        .node-4:hover + .info-4 { opacity: 1; transform: translateY(-10px); }
+        .node-5:hover + .info-5 { opacity: 1; transform: translateY(-10px); }
+
+        /* Specific Card Positioning - Adjusted for Better Spacing */
+        .info-1 { top: 12%; left: 50%; transform: translate(-50%, 10px); } /* Top center */
+        .info-2 { top: 25%; right: 2%; transform: translate(0, 10px); } /* Right top */
+        .info-3 { bottom: 25%; right: 2%; transform: translate(0, 10px); } /* Right bottom */
+        .info-4 { bottom: 25%; left: 2%; transform: translate(0, 10px); } /* Left bottom */
+        .info-5 { top: 25%; left: 2%; transform: translate(0, 10px); } /* Left top */
+
+        /* Progress Indicator */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 80%; /* 4/5 clues */
+            height: 100%;
+            background-color: #2C3E50;
+        }
+
+        .clue-counter {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="bg-circle"></div>
+
+        <div class="header-section">
+            <span class="clue-badge">Clue #4 Found</span>
+            <h1 class="slide-title">Metabolic & Medical Causes</h1>
+            <h2 class="slide-subtitle">When the body's internal systems go out of balance.</h2>
+        </div>
+
+        <div class="content-area">
+            <!-- Central Hub -->
+            <div class="central-hub">
+                <i class="fas fa-heartbeat hub-icon"></i>
+                <h3 class="hub-title">Systemic Balance</h3>
+                <p class="hub-desc">Hover over the nodes to see what disrupts the balance.</p>
+            </div>
+
+            <!-- Node 1: Kidney -->
+            <div class="node node-1">
+                <i class="fas fa-filter"></i>
+            </div>
+            <div class="info-card info-1">
+                <h3>Chronic Kidney Disease</h3>
+                <p>Kidneys lose the ability to regulate sodium and fluid balance.</p>
+                <span class="stat">90% of CKD patients develop hypertension.</span>
+            </div>
+
+            <!-- Node 2: Thyroid -->
+            <div class="node node-2">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <div class="info-card info-2">
+                <h3>Thyroid Disorders</h3>
+                <p>Hyperthyroidism increases cardiac output and metabolic rate, driving up pressure.</p>
+                <span class="stat">Direct hormonal impact on heart rate.</span>
+            </div>
+
+            <!-- Node 3: Endocrine -->
+            <div class="node node-3">
+                <i class="fas fa-flask"></i>
+            </div>
+            <div class="info-card info-3">
+                <h3>Endocrine Disorders</h3>
+                <p>Conditions like Hyperaldosteronism cause salt retention.</p>
+                <span class="stat">Account for 5-10% of secondary hypertension.</span>
+            </div>
+
+            <!-- Node 4: Sleep Apnea -->
+            <div class="node node-4">
+                <i class="fas fa-bed"></i>
+            </div>
+            <div class="info-card info-4">
+                <h3>Obstructive Sleep Apnea</h3>
+                <p>Repeated oxygen drops at night trigger "fight or flight" responses.</p>
+                <span class="stat">Activates sympathetic nervous system 30-50x/night.</span>
+            </div>
+
+            <!-- Node 5: Metabolic -->
+            <div class="node node-5">
+                <i class="fas fa-weight"></i>
+            </div>
+            <div class="info-card info-5">
+                <h3>Metabolic Syndrome</h3>
+                <p>Insulin resistance leads to sodium retention and vascular stiffness.</p>
+                <span class="stat">Affects 25-30% of the global population.</span>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <span class="clue-counter">CLUE 4 OF 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

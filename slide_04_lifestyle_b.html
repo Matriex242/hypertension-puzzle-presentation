@@ -1,0 +1,263 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Piece #3: Lifestyle Causes B</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+        }
+
+        /* Background Elements */
+        .bg-shape-1 {
+            position: absolute;
+            top: 100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background-color: #f4f6f7;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 0 80px;
+            margin-bottom: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .clue-badge {
+            background-color: #2C3E50; /* Dark for "Hidden" theme */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Content Layout - 4 Columns */
+        .columns-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 80px;
+            gap: 20px;
+            height: 400px;
+            z-index: 10;
+        }
+
+        .factor-column {
+            flex: 1;
+            background-color: #ecf0f1;
+            border-radius: 15px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Hover Interaction */
+        .factor-column:hover {
+            background-color: #2C3E50;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(44, 62, 80, 0.3);
+        }
+
+        .factor-column:hover .column-icon { color: #E74C3C; transform: scale(1.1); }
+        .factor-column:hover .column-title { color: #FFFFFF; }
+        .factor-column:hover .column-desc { color: #bdc3c7; }
+        .factor-column:hover .impact-box { background-color: #E74C3C; color: white; border-color: #E74C3C; }
+
+        .column-icon {
+            font-size: 48px;
+            color: #34495E;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .column-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 15px;
+            transition: color 0.4s ease;
+        }
+
+        .column-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.5;
+            margin-bottom: auto; /* Pushes impact box to bottom */
+            font-family: 'Open Sans', sans-serif;
+            transition: color 0.4s ease;
+        }
+
+        .impact-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #3498DB;
+            border-radius: 10px;
+            width: 100%;
+            background-color: white;
+            color: #2C3E50;
+            font-weight: 700;
+            transition: all 0.4s ease;
+        }
+
+        .impact-value {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .impact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 60%; /* 3/5 clues */
+            height: 100%;
+            background-color: #2C3E50;
+        }
+
+        .clue-counter {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+    </style>
+<style manus-editor-reset-styles="true">
+  [size="1"] { font-size: 12px !important; }
+  [size="2"] { font-size: 14px !important; }
+  [size="3"] { font-size: 16px !important; }
+  [size="4"] { font-size: 24px !important; }
+  [size="5"] { font-size: 32px !important; }
+  [size="6"] { font-size: 48px !important; }
+  [size="7"] { font-size: 72px !important; }
+  </style></head>
+<body><div class="slide-container">
+        <div class="bg-shape-1"></div>
+
+        <div class="header-section">
+            <span class="clue-badge">Clue #3 Found</span>
+            <h1 class="slide-title">Hidden Contributors</h1>
+            <h2 class="slide-subtitle">Stress, sleep, and substances usage: The invisible triggers.</h2>
+        </div>
+
+        <div class="columns-container">
+            <!-- Stress -->
+            <div class="factor-column">
+                <i class="fas fa-brain column-icon"></i>
+                <h3 class="column-title">Chronic Stress</h3>
+                <p class="column-desc">
+                    Activates the sympathetic nervous system, releasing catecholamines.
+                </p>
+                <div class="impact-box">
+                    <span class="impact-value">High</span>
+                    <span class="impact-label">Cortisol Release</span>
+                </div>
+            </div>
+
+            <!-- Sleep -->
+            <div class="factor-column">
+                <i class="fas fa-moon column-icon"></i>
+                <h3 class="column-title">Sleep Deprivation</h3>
+                <p class="column-desc">
+                    &lt; 6 hours nightly impairs the body control mechanisms.
+                </p>
+                <div class="impact-box">
+                    <span class="impact-value">+5-15</span>
+                    <span class="impact-label">disease readings increase for 24 HR AVG</span>
+                </div>
+            </div>
+
+            <!-- Tobacco -->
+            <div class="factor-column">
+                <i class="fas fa-smoking column-icon"></i>
+                <h3 class="column-title">Tobacco Use</h3>
+                <p class="column-desc">
+                    Causes immediate and potent affection of disease progression.
+                </p>
+                <div class="impact-box">
+                    <span class="impact-value">+10-25</span>
+                    <span class="impact-label">disease readings increase acutely during smoking</span>
+                </div>
+            </div>
+
+            <!-- Caffeine -->
+            <div class="factor-column">
+                <i class="fas fa-coffee column-icon"></i>
+                <h3 class="column-title">Excess Caffeine</h3>
+                <p class="column-desc">
+                    &gt; 400mg daily can cause significant spikes.
+                </p>
+                <div class="impact-box">
+                    <span class="impact-value">+3-14</span>
+                    <span class="impact-label">increase in disease readings for average 24 hours</span>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+</body></html>

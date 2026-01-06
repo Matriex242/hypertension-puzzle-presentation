@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Piece #2: Lifestyle Causes A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+        }
+
+        /* Background Elements */
+        .bg-shape {
+            position: absolute;
+            bottom: -100px;
+            left: -50px;
+            width: 600px;
+            height: 600px;
+            background-color: #f7f9fa;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 0 80px;
+            margin-bottom: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .clue-badge {
+            background-color: #3498DB; /* Blue for piece #2 */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Content Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 0 80px;
+            z-index: 10;
+            height: 420px;
+        }
+
+        /* Left Column: Interactive List */
+        .habit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .habit-item {
+            background-color: white;
+            border-left: 6px solid #ecf0f1;
+            padding: 20px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .habit-item:hover, .habit-item.active {
+            border-left-color: #E74C3C;
+            background-color: #fdf2f1;
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .habit-icon {
+            font-size: 28px;
+            color: #95a5a6;
+            width: 40px;
+            text-align: center;
+        }
+
+        .habit-item:hover .habit-icon, .habit-item.active .habit-icon {
+            color: #E74C3C;
+        }
+
+        .habit-text h3 {
+            font-size: 20px;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .habit-text p {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Right Column: Visualization Area */
+        .viz-container {
+            background-color: #2C3E50;
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.3);
+        }
+
+        .viz-content {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.4s ease;
+            position: absolute;
+            width: 80%;
+        }
+
+        /* Default state (hover over items to reveal) */
+        .viz-default {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .habit-item:nth-child(1):hover ~ .viz-container .viz-default { opacity: 0; }
+        .habit-item:nth-child(1):hover ~ .viz-container .viz-sodium { opacity: 1; transform: scale(1); }
+
+        .viz-big-number {
+            font-size: 64px;
+            font-weight: 900;
+            color: #E74C3C;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .viz-desc {
+            font-size: 18px;
+            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 40%; /* 2/5 clues */
+            height: 100%;
+            background-color: #3498DB;
+        }
+
+        .clue-counter {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+    </style>
+    <script>
+        function showViz(id) {
+            // Hide all viz contents
+            document.querySelectorAll('.viz-content').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(0.9)';
+            });
+            // Show selected
+            const selected = document.getElementById(id);
+            if(selected) {
+                selected.style.opacity = '1';
+                selected.style.transform = 'scale(1)';
+            }
+            
+            // Update active state on list
+            document.querySelectorAll('.habit-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="bg-shape"></div>
+
+        <div class="header-section">
+            <span class="clue-badge">Clue #2 Found</span>
+            <h1 class="slide-title">Lifestyle Causes (Part A)</h1>
+            <h2 class="slide-subtitle">Daily habits that quietly accumulate damage.</h2>
+        </div>
+
+        <div class="content-grid">
+            <!-- Interactive List -->
+            <div class="habit-list">
+                <div class="habit-item" onmouseover="showViz('viz-sodium')">
+                    <div class="habit-icon"><i class="fas fa-shaker"></i></div>
+                    <div class="habit-text">
+                        <h3>Excessive Sodium</h3>
+                        <p>> 2,300 mg daily intake</p>
+                    </div>
+                </div>
+
+                <div class="habit-item" onmouseover="showViz('viz-obesity')">
+                    <div class="habit-icon"><i class="fas fa-weight"></i></div>
+                    <div class="habit-text">
+                        <h3>Obesity (BMI > 30)</h3>
+                        <p>Excess adipose tissue impact</p>
+                    </div>
+                </div>
+
+                <div class="habit-item active" onmouseover="showViz('viz-sedentary')">
+                    <div class="habit-icon"><i class="fas fa-chair"></i></div>
+                    <div class="habit-text">
+                        <h3>Sedentary Lifestyle</h3>
+                        <p>Physical inactivity weakens regulation</p>
+                    </div>
+                </div>
+
+                <div class="habit-item" onmouseover="showViz('viz-alcohol')">
+                    <div class="habit-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="habit-text">
+                        <h3>Alcohol Consumption</h3>
+                        <p>Exceeding daily moderate limits</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization Area -->
+            <div class="viz-container">
+                <div id="viz-sodium" class="viz-content" style="opacity: 0; transform: scale(0.9);">
+                    <i class="fas fa-mortar-pestle" style="font-size: 60px; margin-bottom: 20px; color: #3498DB;"></i>
+                    <span class="viz-big-number">18%</span>
+                    <p class="viz-desc">Increase in disease severity for salt-sensitive individuals.</p>
+                </div>
+
+                <div id="viz-obesity" class="viz-content" style="opacity: 0; transform: scale(0.9);">
+                    <i class="fas fa-arrows-alt-v" style="font-size: 60px; margin-bottom: 20px; color: #3498DB;"></i>
+                    <span class="viz-big-number">5-10x</span>
+                    <p class="viz-desc">Increased risk compared to individuals with normal weight.</p>
+                </div>
+
+                <div id="viz-sedentary" class="viz-content" style="opacity: 1; transform: scale(1);">
+                    <i class="fas fa-battery-quarter" style="font-size: 60px; margin-bottom: 20px; color: #3498DB;"></i>
+                    <span class="viz-big-number">20-30%</span>
+                    <p class="viz-desc">Higher risk of developing disease.</p>
+                </div>
+
+                <div id="viz-alcohol" class="viz-content" style="opacity: 0; transform: scale(0.9);">
+                    <i class="fas fa-beer" style="font-size: 60px; margin-bottom: 20px; color: #3498DB;"></i>
+                    <span class="viz-big-number">+1</span>
+                    <p class="viz-desc">Increase in disease severity for every drink beyond the daily limit.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <span class="clue-counter">CLUE 2 OF 5</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reclaiming Control: Lifestyle Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px; /* keep top padding to preserve title spacing */
+        }
+
+        /* Background Accents */
+        .bg-accent {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.05;
+        }
+        .accent-circle {
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background-color: #3498DB;
+            border-radius: 50%;
+        }
+        .accent-square {
+            bottom: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: #2C3E50;
+            transform: rotate(15deg);
+        }
+
+        /* Header */
+        .header-section {
+            margin-bottom: 20px; /* reduced to pull grid up */
+            z-index: 10;
+            position: relative;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Main Content Grid */
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 24px;
+            height: 420px; /* reduced from 480 to decrease overall height */
+            z-index: 10;
+        }
+
+        .strategy-card {
+            background: white;
+            border: 1px solid #ecf0f1;
+            border-radius: 15px;
+            padding: 18px; /* slightly reduced inner padding */
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: #3498DB;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+
+        .strategy-card:hover::before {
+            background-color: #3498DB;
+        }
+
+        /* Icon Styling */
+        .icon-box {
+            width: 72px;
+            height: 72px;
+            background-color: #f4f6f7;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-card:hover .icon-box {
+            background-color: #3498DB;
+            color: white;
+        }
+
+        .strategy-icon {
+            font-size: 36px; /* keep icon font size */
+            color: #34495E;
+            transition: color 0.3s ease;
+        }
+
+        .strategy-card:hover .strategy-icon {
+            color: white;
+        }
+
+        /* Content Styling */
+        .card-content {
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.5;
+            font-family: 'Open Sans', sans-serif;
+            margin-bottom: 12px; /* slightly reduced */
+        }
+
+        .key-action {
+            font-size: 14px;
+            font-weight: 600;
+            color: #34495E;
+            background-color: #ecf0f1;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Impact Badge */
+        .impact-badge {
+            position: absolute;
+            top: 18px; /* pulled a bit to match reduced padding */
+            right: 18px;
+            text-align: right;
+        }
+
+        .impact-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 900;
+            color: #E74C3C;
+        }
+
+        .impact-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #95a5a6;
+            font-weight: 600;
+        }
+
+    </style>
+<style manus-editor-reset-styles="true">
+  [size="1"] { font-size: 12px !important; }
+  [size="2"] { font-size: 14px !important; }
+  [size="3"] { font-size: 16px !important; }
+  [size="4"] { font-size: 24px !important; }
+  [size="5"] { font-size: 32px !important; }
+  [size="6"] { font-size: 48px !important; }
+  [size="7"] { font-size: 72px !important; }
+  </style></head>
+<body><div class="slide-container">
+        <!-- Background Accents -->
+        <div class="bg-accent accent-circle"></div>
+        <div class="bg-accent accent-square"></div>
+
+        <div class="header-section">
+            <h1 class="slide-title">Reclaiming Control</h1>
+            <h2 class="slide-subtitle">Evidence-based lifestyle interventions to lower pressure.</h2>
+        </div>
+
+        <div class="strategies-grid">
+            <!-- Diet Card -->
+            <div class="strategy-card">
+                <div class="icon-box">
+                    <i class="fas fa-carrot strategy-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">DASH Diet &amp; Sodium</h3>
+                    <p class="card-desc">
+                        Dietary Approaches to Stop Hypertension. Rich in fruits, vegetables, whole grains, and low-fat dairy.
+                    </p>
+                    <span class="key-action">Limit Sodium &lt; 1,500 mg/day</span>
+                </div>
+                <div class="impact-badge" style="transform: translate(8.880859px, -15.942245px);">
+                    <span class="impact-value">-8-14</span>
+                    <span class="impact-label">mmHg Reduction</span>
+                </div>
+            </div>
+
+            <!-- Exercise Card -->
+            <div class="strategy-card">
+                <div class="icon-box">
+                    <i class="fas fa-running strategy-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Physical Activity</h3>
+                    <p class="card-desc">
+                        Regular aerobic exercise strengthens the heart, allowing it to pump blood with less effort.
+                    </p>
+                    <span class="key-action">150 min/week Moderate Intensity</span>
+                </div>
+                <div class="impact-badge" style="transform: translate(9.927856px, -14.379059px);">
+                    <span class="impact-value" style="transform: translate(-0.700317px, -3.657028px);">-5-8</span>
+                    <span class="impact-label">mmHg Reduction</span>
+                </div>
+            </div>
+
+            <!-- Weight Card -->
+            <div class="strategy-card">
+                <div class="icon-box">
+                    <i class="fas fa-weight strategy-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Weight Management</h3>
+                    <p class="card-desc">
+                        Blood pressure rises as body weight increases. Losing even a small amount of weight can make a huge difference.
+                    </p>
+                    <span class="key-action">-1 mmHg per 1 kg lost</span>
+                </div>
+                <div class="impact-badge" style="transform: translate(12.693176px, -16.425995px);">
+                    <span class="impact-value">-5-20</span>
+                    <span class="impact-label">mmHg (per 10kg)</span>
+                </div>
+            </div>
+
+            <!-- Moderation Card -->
+            <div class="strategy-card">
+                <div class="icon-box">
+                    <i class="fas fa-wine-glass-alt strategy-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Moderation &amp; Stress</h3>
+                    <p class="card-desc">
+                        Limiting alcohol intake and managing chronic stress through mindfulness or therapy.
+                    </p>
+                    <span class="key-action">Limit Alcohol: 2 (M) / 1 (W) drinks</span>
+                </div>
+                <div class="impact-badge" style="transform: translate(13.389893px, -14.631775px);">
+                    <span class="impact-value">-2-4</span>
+                    <font color="#ff0000"><span class="impact-label">mmHg Reduction</span>
+                </font></div>
+            </div>
+        </div>
+    </div>
+
+</body></html>

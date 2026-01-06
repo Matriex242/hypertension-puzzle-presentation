@@ -1,0 +1,270 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Piece #1: Predisposing Factors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px; /* Top padding only */
+        }
+
+        /* Background Elements */
+        .bg-puzzle-piece {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 400px;
+            color: #f4f6f7;
+            z-index: 0;
+            transform: rotate(15deg);
+        }
+
+        /* Header Section */
+        .header-section {
+            padding: 0 80px;
+            margin-bottom: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .clue-badge {
+            background-color: #E74C3C;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #34495E;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Grid Layout */
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 80px;
+            z-index: 10;
+            height: 400px; /* Fixed height for consistency */
+        }
+
+        .factor-card {
+            background-color: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-10px);
+            border-color: #3498DB;
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.15);
+        }
+
+        .factor-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #E74C3C;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .factor-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background-color: #ecf0f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .factor-card:hover .icon-wrapper {
+            background-color: #3498DB;
+            color: white;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            color: #34495E;
+            transition: color 0.3s ease;
+        }
+
+        .factor-card:hover .card-icon {
+            color: white;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: #7f8c8d;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .factor-card:hover .card-content {
+            opacity: 1;
+            transform: translateY(0);
+            color: #34495E;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 20%; /* 1/5 clues */
+            height: 100%;
+            background-color: #E74C3C;
+        }
+
+        .clue-counter {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 14px;
+        }
+
+    </style>
+<style manus-editor-reset-styles="true">
+  [size="1"] { font-size: 12px !important; }
+  [size="2"] { font-size: 14px !important; }
+  [size="3"] { font-size: 16px !important; }
+  [size="4"] { font-size: 24px !important; }
+  [size="5"] { font-size: 32px !important; }
+  [size="6"] { font-size: 48px !important; }
+  [size="7"] { font-size: 72px !important; }
+  </style></head>
+<body><div class="slide-container">
+        <!-- Background Decoration -->
+        <i class="fas fa-puzzle-piece bg-puzzle-piece"></i>
+
+        <div class="header-section">
+            <span class="clue-badge">Clue #1 Found</span>
+            <h1 class="slide-title">The Predisposing Factors</h1>
+            <h2 class="slide-subtitle">Your genetic blueprint sets the baseline risk.</h2>
+        </div>
+
+        <div class="factors-grid">
+            <!-- Genetics Card -->
+            <div class="factor-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-dna card-icon"></i>
+                </div>
+                <h3 class="card-title">Genetics</h3>
+                <p class="card-content">
+                    <strong>30-50%</strong> of risk is inherited.<br>
+                    Family history increases your personal risk by <strong>25-60%</strong>.
+                </p>
+            </div>
+
+            <!-- Age Card -->
+            <div class="factor-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3 class="card-title">Age</h3>
+                <p class="card-content">
+                    Risk climbs <strong>5-10%</strong> every decade after age 20.<br>
+                    Arteries naturally stiffen over time.
+                </p>
+            </div>
+
+            <!-- Demographics Card -->
+            <div class="factor-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-users card-icon"></i>
+                </div>
+                <h3 class="card-title">Demographics</h3>
+                <p class="card-content">
+                    <strong>African Americans</strong> have a 40% higher incidence rate and develop it earlier in life.
+                </p>
+            </div>
+
+            <!-- Gender Card -->
+            <div class="factor-card">
+                <div class="icon-wrapper">
+                    <i class="fas fa-venus-mars card-icon"></i>
+                </div>
+                <h3 class="card-title">Gender</h3>
+                <p class="card-content">
+                    <strong>Men:</strong> Higher risk before age 55.<br>
+                    <strong>Women:</strong> Risk surges past men after menopause.
+                </p>
+            </div>
+        </div>
+
+        
+    </div>
+
+</body></html>

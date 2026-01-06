@@ -1,0 +1,108 @@
+{
+  "project_info": {
+    "title": "The Mystery Begins: A Silent Killer Hiding in Plain Sight",
+    "created": 1767687324.8471687,
+    "last_updated": 1767694060.126388,
+    "total_slides": 12
+  },
+  "slides": {
+    "slide_01_mystery_intro": "edited",
+    "slide_02_risk_factors": "edited",
+    "slide_03_lifestyle_a": "edited",
+    "slide_04_lifestyle_b": "edited",
+    "slide_05_medical_causes": "edited",
+    "slide_06_symptoms": "edited",
+    "slide_07_diagnosis": "edited",
+    "slide_08_incidence": "edited",
+    "slide_09_complications": "edited",
+    "slide_10_lifestyle_mgmt": "edited",
+    "slide_11_medication": "edited",
+    "slide_12_prevention_future": "edited"
+  },
+  "outline": [
+    {
+      "id": "slide_01_mystery_intro",
+      "title": "The Mystery Begins: A Silent Killer Hiding in Plain Sight",
+      "summary": "Introduction to a medical mystery condition affecting 1.28 billion people globally, often without warning signs.",
+      "image_plan": "/home/ubuntu/upload/search_images/55RhBD9wd1mx.jpg - The slide introduces the presentation as an \"Interactive Hypertension Puzzle.\" Image 7 is a clear visual of a healthcare puzzle concept.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_02_risk_factors",
+      "title": "Puzzle Piece #1: The Predisposing Factors",
+      "summary": "Exploring genetic and demographic risk factors including age, race, gender, and family history.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_03_lifestyle_a",
+      "title": "Puzzle Piece #2: Lifestyle Causes (Part A)",
+      "summary": "The impact of daily habits like excessive sodium intake, sedentary lifestyle, alcohol, and obesity.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_04_lifestyle_b",
+      "title": "Puzzle Piece #3: Lifestyle Causes (Part B)",
+      "summary": "Hidden contributors including chronic stress, sleep deprivation, tobacco use, and caffeine.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_05_medical_causes",
+      "title": "Puzzle Piece #4: Metabolic and Medical Causes",
+      "summary": "Underlying medical conditions such as insulin resistance, chronic kidney disease, and thyroid disorders.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_06_symptoms",
+      "title": "Puzzle Piece #5: The Symptom Clues",
+      "summary": "Why it is called the 'silent killer' and the rare symptoms that appear only in severe cases.",
+      "image_plan": "/home/ubuntu/upload/search_images/iVoiwue98o92.jpg - The slide discusses the \"Silent Killer\" and the importance of monitoring. Image 1 shows a person taking their blood pressure, which is the primary way to monitor the condition.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_07_diagnosis",
+      "title": "The Diagnosis Revealed: Hypertension",
+      "summary": "Defining hypertension, its classification stages, and global mortality statistics.",
+      "image_plan": "/home/ubuntu/upload/search_images/J0dpKY3UCnEn.jpg - This slide reveals the diagnosis of Hypertension and provides the classification and blood pressure ranges. Image 3 is a detailed infographic specifically about High Blood Pressure, including classification stages and symptoms.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_08_incidence",
+      "title": "A Growing Crisis: Incidence and Burden",
+      "summary": "Global prevalence rates, economic burden, and the rising numbers in developing nations.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_09_complications",
+      "title": "The Cost of Silence: Complications",
+      "summary": "Damage to organ systems including heart failure, stroke, kidney disease, and vision loss.",
+      "image_plan": "/home/ubuntu/upload/search_images/05PPOqCFtW07.jpg; /home/ubuntu/upload/search_images/dbxNBDNZSs7C.jpg - This slide details the complications of uncontrolled hypertension, specifically focusing on cardiovascular and vascular damage. Image 6 shows the heart and the progression of plaque buildup in the arteries, and Image 4 specifically illustrates Coronary Artery Disease (CAD) and plaque, both direct complications.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_10_lifestyle_mgmt",
+      "title": "Reclaiming Control: Lifestyle Management",
+      "summary": "Evidence-based interventions like the DASH diet, physical activity, and weight management.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_11_medication",
+      "title": "Medical Defense: Pharmacology & Monitoring",
+      "summary": "Overview of antihypertensive medications and the importance of consistent blood pressure monitoring.",
+      "image_plan": "/home/ubuntu/upload/search_images/7Pokj70yPX2z.jpg - This slide discusses pharmacological management and monitoring. Image 2 is a medical illustration defining hypertension with clear visuals of the heart and constricted artery, which is relevant to the mechanism of action of many antihypertensive drugs.",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_12_prevention_future",
+      "title": "The Future: Prevention & Outlook",
+      "summary": "Primary and secondary prevention strategies, emerging therapies, and a final call to action.",
+      "image_plan": "/home/ubuntu/upload/search_images/zgvaWPEejJNz.jpg - This slide discusses prevention, future outlook, and public health initiatives. Image 8, showing a stethoscope and a missing puzzle piece being placed, symbolizes solving the healthcare puzzle through intervention and monitoring.",
+      "slide_template_key": ""
+    }
+  ]
+}

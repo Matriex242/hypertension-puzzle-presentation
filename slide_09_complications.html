@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cost of Silence: Complications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px; /* keep required min-height */
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px; /* keep top padding for title consistency */
+        }
+
+        /* Header */
+        .header-section {
+            margin-bottom: 30px;
+            border-left: 8px solid #c0392b;
+            padding-left: 30px;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Main Content */
+        /* Reduced content height by 30px to fit exactly into 720px total height */
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            height: 470px; /* was 500px -> decreased to reduce overall slide height */
+        }
+
+        /* Left Column: Organ Systems */
+        .organ-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .organ-card {
+            background-color: white;
+            border: 1px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .organ-card:hover {
+            transform: translateX(10px);
+            border-color: #E74C3C;
+            background-color: #fdf2f1;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: #ecf0f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #2C3E50;
+            flex-shrink: 0;
+        }
+
+        .organ-card:hover .icon-box {
+            background-color: #E74C3C;
+            color: white;
+        }
+
+        .card-text h3 {
+            font-size: 20px;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .card-text p {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.4;
+        }
+
+        /* Right Column: Images */
+        .image-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .image-frame {
+            flex: 1;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure full image is seen */
+            background-color: #fff;
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 8px;
+            font-size: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-section">
+            <h1 class="slide-title">The Cost of Silence</h1>
+            <h2 class="slide-subtitle">Uncontrolled hypertension damages every major organ system.</h2>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- Left: Organ Systems -->
+            <div class="organ-list">
+                <div class="organ-card">
+                    <div class="icon-box"><i class="fas fa-heart-broken"></i></div>
+                    <div class="card-text">
+                        <h3>Cardiovascular</h3>
+                        <p>Heart failure (75% risk) and Myocardial Infarction.<br>Arteries harden and narrow (Atherosclerosis).</p>
+                    </div>
+                </div>
+
+                <div class="organ-card">
+                    <div class="icon-box"><i class="fas fa-brain"></i></div>
+                    <div class="card-text">
+                        <h3>Cerebrovascular</h3>
+                        <p>Ischemic and Hemorrhagic Stroke.<br>60-80% of strokes are hypertension-related.</p>
+                    </div>
+                </div>
+
+                <div class="organ-card">
+                    <div class="icon-box"><i class="fas fa-filter"></i></div>
+                    <div class="card-text">
+                        <h3>Renal (Kidneys)</h3>
+                        <p>Chronic Kidney Disease (CKD).<br>Hypertension causes 35% of all kidney failure.</p>
+                    </div>
+                </div>
+
+                <div class="organ-card">
+                    <div class="icon-box"><i class="fas fa-eye"></i></div>
+                    <div class="card-text">
+                        <h3>Retinal (Eyes)</h3>
+                        <p>Hypertensive Retinopathy.<br>Damage to blood vessels in the retina leads to vision loss.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Images -->
+            <div class="image-column">
+                <div class="image-frame">
+                    <img src="/home/ubuntu/upload/search_images/05PPOqCFtW07.jpg" alt="Heart Disease Risk Factors">
+                    <div class="image-label">Cardiovascular Risk Progression</div>
+                </div>
+                <div class="image-frame">
+                    <img src="/home/ubuntu/upload/search_images/dbxNBDNZSs7C.jpg" alt="Coronary Artery Disease">
+                    <div class="image-label">Coronary Artery Disease (CAD)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
